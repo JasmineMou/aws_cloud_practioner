@@ -337,7 +337,7 @@ EKS is a fully managed Kubernetes service on AWS.
 Kubernetes is open-source software that enables you to deploy and manage containerized applications at scale. As new features and functionalities release for k8s apps, you can easily apply these updates to your applications managed by Amazon EKS. 
 
 5) AWS Fargate
-Fargate is a serverless compute engine for containers like ECS or EKS where you can run the code on, saving you the burden of provisioning/managing server infrastructure (underlying OS/EC2 instances management). 
+**Fargate is a serverless compute engine for containers** like ECS or EKS where you can run the code on, saving you the burden of provisioning/managing server infrastructure (underlying OS/EC2 instances management). 
 You only pay for the resources that are required to run your containers. 
 
 6) Summary of workflow
@@ -359,6 +359,7 @@ then choose platform (EC2, or serverless env like AWS Fargate).
 [AWS Fargate](https://aws.amazon.com/fargate/)
 [Compute on AWS](https://aws.amazon.com/products/compute)
 
+
 [AWS Compute Blog](https://aws.amazon.com/blogs/compute/)
 [AWS Compute Services](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/compute-services.html)
 [Hands-On Tutorials: Compute](https://aws.amazon.com/getting-started/hands-on/?awsf.getting-started-category=category%23compute&awsf.getting-started-content-type=content-type%23hands-on)
@@ -372,9 +373,117 @@ then choose platform (EC2, or serverless env like AWS Fargate).
 - Describe the basic concept of Availability Zones
 - Describe the benefits of Amazon CloudFront and Edge locations
 - Compare different methods for provisioning AWS services
+#### notes
+1. AWS Global Infrastructure
+Global infrastructure allows high availability and fault tolerance. 
 
+1) Regions
+A Region is a geographical area that contains AWS resources. 
+Each Region has multiple AZs. 
+A. compliance w/ data governance and legal requirements
+regional data sovereignty
+B. proximity to customers
+latency: the time it takes for the data to be sent and received
+C. feature avaialbility
+D. pricing
 
-----------
+2) Availability zones
+- Each AZ is one or more discrete data centers w/ redundant power/networking/connectivity.
+**It is a fully isolated portion of the AWS global infrastructure.**
+It allows you high availability and disaster recovery scenarios.  
+AZ are located tens of miles apart from each other. They are close enough to have low latency btw AZs, but distant enough to reduce the chance that multiple AZs are affected given a disaster occurs in the Region. 
+- Deploy infrastructure across at least 2 AZs
+Planning for failure and deploying apps across multiple AZ is an important part of building a resilient and highly available architecture.
+- Regional scoped services run at the Regional level
+They run synchronously across multiple AZs w/o any additional effort/cost.
+Example: ELB runs across all AZs, communicating w/ the EC2 instances that are running in a specific AZ. 
+
+3) References
+
+[AWS global infrastructure](https://aws.amazon.com/about-aws/global-infrastructure)
+[Regions and Availability Zones](https://aws.amazon.com/about-aws/global-infrastructure/regions_az)
+
+2. Edge locations
+1) Concepts
+- Content Delivery Networks (CDNs)
+Caching copies of data closer to the customers all over the world.
+- Domain Name Service (DNS)
+Helping direct customers to the correct web locations w/ reliably low latency. 
+
+2) Amazon CloudFront
+AWS's version of **global CDN**. **AWS CloudFront uses a network of edge locations to cache content and deliver content to customers all over the world w/ low latency and high transfer speed. When content is cached, it is stored locally as a copy. The content can be data, video, applications, and APIs**
+- Edge location
+**An edge location is a site that Amazon CloudFront uses to store cached copies of your content closer to your customers** for faster delivery. You can push content from inside a Region to a collection of Edge locations around the world, in order to accelerate communication and content delivery.
+AWS Edge locations also run a DNS known as Amazon Route 53. 
+- origin
+An origin is the server from which CloudFront gets your files. 
+Examples of CloudFront origins include Amazon Simple Storage Service (Amazon S3) buckets and web servers. 
+
+3) AWS Outposts
+- **AWS Outposts is a service that you can use to run AWS infrastructure in a hybrid approach**. 
+- extend AWS infrastructure and services to your on-premises data center
+AWS will basically install a fully operational mini Region, right inside your own data center. That's owned and operated by AWS, using 100% of AWS functionality, but isolated within your own building. 
+
+4) Summary
+- Regions are geographically isolated areas
+where you can access services needed to run enterprise
+- Regions contain Availability Zones
+which allow you to run across physically separated buildings while keeping your apps logically unified.
+- AWS Edge locations run Amazon CloudFront
+to get content closer to customers regardless of their locations. 
+
+3. How to provision AWS resources
+1) concepts and summary
+- Application Programming Interface (API)
+In AWS, invoke or call APIs to provision/configure/manage your AWS resources. 
+- provisioning a resource
+manual: AWS Management Console, AWS CLI, SDKs.
+services: AWS Elastic Beanstalk, AWS CloudFormation
+
+2) Interact w/ AWS services
+A. AWS Management Console
+- The AWS Management Console is a web-based interface for accessing and managing AWS services. 
+You can quickly access recently used services and search for other services by name, keyword, or acronym. The console includes wizards and automated workflows that can simplify the process of completing tasks.
+- You can also use the AWS Console mobile application to perform tasks of
+test environments, view bills, view monitoring, work w/ non-technical issues. 
+- Multiple identities can stay logged into the AWS Console mobile app at the same time.
+
+B. AWS Command Line Interface (AWS CLI)
+- Writing commands using CLI makes actions that services/apps perform scriptable and repeatable
+you can have these scripts run automatically, like on a schedule or triggered by another process. 
+For example, you can use commands to launch an Amazon EC2 instance, connect an Amazon EC2 instance to a specific Auto Scaling group, and more.
+
+C. Software Development Kits
+- interact w/ AWS resources thru various programming languages
+SDK makes it easy for developers to develop AWS apps in supported programming languages without using the low level APIs, as well as avoiding that manual resource creation.
+
+3) AWS Elastic Beanstalk
+- a service that helps you provision Amazon EC2-based environments/infrastructure
+With AWS Elastic Beanstalk, you provide code and configuration settings, Elastic Beanstalk deploys the resources necessary to perform the following tasks: Adjust capacity, Load balancing, Automatic scaling, Application health monitoring.
+It gives you the convenience of not having to provision and manage all of these pieces separately, while still giving you the visibility and control of the underlying resources. 
+- makes it easy to save env configs so to be deployed again
+
+4) AWS CloudFormation
+- infrastructure as code tool
+Instead of using the AWS Management Console to individually provision resources, you can define AWS resources in a declarative way using CloudFormation templates (JSON or YAML text-based documents).
+It allows you to define what you want to build without specifying the details of exactly how to build it. CloudFormation manages all the calls to the backend AWS APIs for you. 
+You can run the same CloudFormation template in multiple accounts or multiple regions, and it will create identical environments across them. There is less room for human error as it is a totally automated process.  
+
+- provides automated & repeatable deployments
+AWS CloudFormation provisions your resources in a safe, repeatable manner, enabling you to frequently build your infrastructure and applications without having to perform manual actions. It determines the right operations to perform when managing your stack and rolls back changes automatically if it detects errors.
+
+- supports multiple AWS resources
+EC2, storage, database, analytics, machine learning. 
+Once you define your resources in a CloudFormation template, CloudFormation will parse the template and begin provisioning all the resources you defined in parallel. 
+
+5) References
+
+[Global Infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)
+[Interactive map of the AWS Global Infrastructure](https://www.infrastructure.aws/)
+[AWS Networking and Content Delivery Blog](https://aws.amazon.com/blogs/networking-and-content-delivery/)
+[Tools to Build on AWS](https://aws.amazon.com/tools/)
+[AWS Customer Stories: Content Delivery](https://aws.amazon.com/solutions/case-studies/?customer-references-cards.sort-by=item.additionalFields.publishedDate&customer-references-cards.sort-order=desc&awsf.customer-references-location=*all&awsf.customer-references-segment=*all&awsf.customer-references-product=product%23vpc%7Cproduct%23api-gateway%7Cproduct%23cloudfront%7Cproduct%23route53%7Cproduct%23directconnect%7Cproduct%23elb&awsf.customer-references-category=category%23content-delivery&awsf.customer-references-industry=*all&awsf.customer-references-use-case=*all&awsf.customer-references-tech-category=*all&customer-references-cards.q=content%2Bdelivery&customer-references-cards.q_operator=AND)
+
 
 ### Module 4: Networking
 #### Objectives
@@ -387,6 +496,8 @@ then choose platform (EC2, or serverless env like AWS Fargate).
 - Describe the layers of security used in an IT strategy
 - Describe which services are used to interact with the AWS global network
 
+
+----------
 
 ### Module 5: Storage and Databases
 #### Objectives
