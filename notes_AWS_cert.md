@@ -65,6 +65,7 @@ This flexibility provides you with more time to experiment and innovate. When co
 The global footprint of the AWS Cloud enables you to **deploy applications to customers around the world quickly with low latency**. This means that even if you are located in a different part of the world than your customers, customers are able to access your applications with minimal delays. 
 
 5. References
+
 [AWS glossary](https://docs.aws.amazon.com/general/latest/gr/glos-chap.html)
 [Whitepaper: Overview of Amazon Web Services](https://d0.awsstatic.com/whitepapers/aws-overview.pdf)
 [AWS Fundamentals: Overview](https://aws.amazon.com/getting-started/fundamentals-overview/)
@@ -175,6 +176,7 @@ You can think of input operations as data put into a system, such as records ent
 If you have an application that has a high IOPS requirement, a storage optimized instance can provide better performance over other instance types not optimized for this kind of use case.
 
 2) References
+
 [EC2 instance types](https://aws.amazon.com/ec2/instance-types/)
 
 7. EC2 pricing
@@ -276,6 +278,7 @@ endpoints: AWS Lambda functions, SQS queue, web servers, HTTPS/HTTP web hooks, e
 fan out notifications to end users: mobile push, SMS, email. 
 
 5) References
+
 [Amazon SNS](https://aws.amazon.com/sns)
 
 11. Additional compute services
@@ -340,6 +343,7 @@ first choose orchestration tool (ECS, or EKS),
 then choose platform (EC2, or serverless env like AWS Fargate).
 
 7) References
+
 [AWS Lambda](https://aws.amazon.com/lambda)
 [Amazon ECS](https://aws.amazon.com/ecs/)
 [Docker](https://www.docker.com/)
