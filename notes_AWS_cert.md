@@ -495,6 +495,47 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Describe the benefit of hybrid deployments
 - Describe the layers of security used in an IT strategy
 - Describe which services are used to interact with the AWS global network
+#### notes
+1. Connectivity to AWS
+
+
+
+1) Internet gateway
+
+2) Virtual private gateway
+
+
+3) Amazon Virtual Private Cloud (VPC)
+A VPC lets you provision a logically isolated section of the AWS Cloud where you can launch AWS resources in a virtual network that you define. 
+Within a VPC, you can organize your resources into subnets. 
+
+
+4) AWS Direct Connect
+
+
+5) References
+[Amazon Virtual Private Cloud (Amazon VPC)](https://aws.amazon.com/vpc/)
+
+
+
+
+2. Subnets and network access control lists
+
+3. Global networking
+
+
+
+
+
+
+
+
+
+- subnets
+A subnet is a section of a VPC that can contain resources such as Amazon EC2 instances.
+The public and private grouping of resources are known as subnets and they are ranges of IP addresses in your VPC. 
+public subnet: these resources can be public facing so they have access to the internet 
+private subnet: private with no internet access, usually for backend services like databases or application servers.
 
 
 ----------
@@ -509,6 +550,8 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Describe the benefits of Amazon Relational Database Service (Amazon RDS)
 - Describe the benefits of Amazon DynamoDB
 - Summarize various database services
+#### notes
+
 
 ### Module 6: Security
 #### Objectives
@@ -519,6 +562,8 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Explain the benefits of AWS Organizations
 - Summarize the benefits of compliance with AWS
 - Explain primary AWS security services at a basic level
+#### notes
+
 
 ### Module 7: Monitoring and Analytics
 #### Objectives
@@ -526,6 +571,8 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Describe the benefits of Amazon CloudWatch
 - Describe the benefits of AWS CloudTrail
 - Describe the benefits of AWS Trusted Advisor
+#### notes
+
 
 ### Module 8: Pricing and Support
 #### Objectives
@@ -537,6 +584,8 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Explain the primary benefits of the AWS Pricing Calculator
 - Distinguish between the various AWS Support Plans
 - Describe the benefits of AWS Marketplace
+#### notes
+
 
 ### Module 9: Migration and Innovation
 #### Objectives
@@ -545,13 +594,21 @@ Once you define your resources in a CloudFormation template, CloudFormation will
 - Summarize six key factors of a cloud migration strategy
 - Describe the benefits of various AWS data migration solutions, such as AWS Snowcone, AWS Snowball, and AWS Snowmobile
 - Summarize the broad scope of innovative solutions that AWS offers
+#### notes
+
+
 
 ### Module 10: The Cloud Journey
 #### Objectives
 - Summarize the five pillars of the AWS Well-Architected Framework
 - Explain the six benefits of cloud computing
+#### notes
+
+
 
 ### Module 11: AWS Certified Cloud Practitioner Basics
 #### Objectives
 - Determine resources for preparing for the AWS Certified Cloud Practitioner examination
 - Describe benefits of becoming AWS Certified
+#### notes
+
